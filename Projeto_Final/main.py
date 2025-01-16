@@ -1,9 +1,10 @@
-from alunos import cadastrar_aluno, listar_alunos
+from alunos import cadastrar_aluno, listar_alunos, adicionar_notas, listar_notas
 from professores import cadastrar_professor, listar_professores
 from turmas import criar_turma, listar_turmas
 from relatorios import salvar_em_pdf, salvar_em_excel
 
 while True:
+    
     print("\n--- Gestão de Secretaria Escolar ---")
     print("1. Cadastrar Aluno")
     print("2. Listar Alunos")
@@ -11,9 +12,11 @@ while True:
     print("4. Listar Professores")
     print("5. Criar Turma")
     print("6. Listar Turmas")
-    print("7. Salvar Relatório em PDF")
-    print("8. Salvar Relatório em Excel")
-    print("9. Sair")
+    print("7. Adicionar Notas a um Aluno")
+    print("8. Listar Notas dos Alunos")
+    print("9. Salvar Relatório em PDF")
+    print("10. Salvar Relatório em Excel")
+    print("11. Sair")
 
     opcao = input("Escolha uma opção: ")
 
@@ -30,10 +33,14 @@ while True:
     elif opcao == "6":
         listar_turmas()
     elif opcao == "7":
-        salvar_em_pdf()
+        adicionar_notas()
     elif opcao == "8":
-        salvar_em_excel()
+        listar_notas()
     elif opcao == "9":
+        salvar_em_pdf()
+    elif opcao == "10":
+        salvar_em_excel()
+    elif opcao == "11":
         print("Encerrando o programa. Até mais!")
         break
     else:
