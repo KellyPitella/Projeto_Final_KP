@@ -1,40 +1,46 @@
+import json
+
 alunos = []
 materias = []
 
-def cadastrar_aluno():
+def cadastrar_aluno(alunos):
     try:
-        aluno = input("Digite o nome do aluno: ")
+        nome = input("Digite o nome do aluno: ")
         idade = int(input("Digite a idade do aluno: "))
-        ano_escolar = input("Digite o ano escolar: ")
-        disciplinas = input("Digite as disciplinas (separadas por vírgula): ").split(',')
-
-        alunos.append({
-            "nome": aluno,
+        ano_escolar = int(input("Digite o ano escolar do aluno: "))
+        disciplinas = input("Digite as disciplinas do aluno (separadas por vírgula): ").split(",")
+        
+        aluno = {
+            "nome": nome,
             "idade": idade,
             "ano_escolar": ano_escolar,
-            "disciplinas": disciplinas,
+            "disciplinas": [disciplina.strip() for disciplina in disciplinas],
             "notas": {}
-        })
-        print(f"Aluno {aluno} cadastrado com sucesso!")
+        }
+        
+        alunos.append(aluno)
+        print(f"Aluno {nome} cadastrado com sucesso!")
+        
     except ValueError:
-        print("Erro: idade deve ser um número inteiro.")
+        print("Erro: A idade e o ano escolar devem ser números inteiros.")
 
-def listar_alunos():
+
+def listar_alunos(alunos):
     if not alunos:
         print("Nenhum aluno cadastrado.")
     else:
-        print("Lista de Alunos:")
+        print("\n--- Lista de Alunos ---")
         for idx, aluno in enumerate(alunos, start=1):
-            disciplinas_formatadas = ', '.join(aluno['disciplinas'])
-            print(f"{idx}. Nome: {aluno['nome']}, Idade: {aluno['idade']}, Ano Escolar: {aluno['ano_escolar']}, Disciplinas: {disciplinas_formatadas}")
+            disciplinas = ', '.join(aluno['disciplinas'])
+            print(f"{idx}. Nome: {aluno['nome']}, Idade: {aluno['idade']}, Ano Escolar: {aluno['ano_escolar']}, Disciplinas: {disciplinas}")
             
-def adicionar_notas():
+def adicionar_notas(alunos):
     if not alunos:
         print("Nenhum aluno cadastrado para adicionar notas.")
         return
 
     try:
-        listar_alunos()
+        listar_alunos(alunos)
         aluno_idx = int(input("Digite o número do aluno: ")) - 1
         if 0 <= aluno_idx < len(alunos):
             aluno = alunos[aluno_idx]
@@ -66,15 +72,13 @@ def adicionar_notas():
             print("Número de aluno inválido.")
     except ValueError:
         print("Erro: As entradas devem ser números válidos.")
-
+        
 def listar_notas():
-    if not alunos or all(not aluno['notas'] for aluno in alunos):
-        print("Nenhuma nota cadastrada.")
+    if not alunos:
+        print("Nenhum aluno cadastrado.")
     else:
-        print("Lista de Notas:")
         for aluno in alunos:
-            if aluno['notas']:
-                print(f"Aluno: {aluno['nome']}")
-                for disciplina, info in aluno['notas'].items():
-                    notas_formatadas = ', '.join(map(str, info['notas']))
-                    print(f"  Disciplina: {disciplina} - Notas: {notas_formatadas} - Status: {info['status']}")            
+            print(f"Aluno: {aluno['nome']}")
+            for disciplina, info in aluno['notas'].items():
+                notas = ', '.join(map(str, info['notas']))
+                print(f"  Disciplina: {disciplina} - Notas: {notas} - Status: {info['status']}")        

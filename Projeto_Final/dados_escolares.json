@@ -1,0 +1,63 @@
+{
+    "alunos": [
+        {
+            "nome": "Gustavo Pitella",
+            "idade": 28,
+            "ano_escolar": 2,
+            "disciplinas": [
+                "Matematica",
+                "Portugues"
+            ],
+            "notas": {}
+        },
+        {
+            "nome": "Kelly Pitella",
+            "idade": 29,
+            "ano_escolar": 2,
+            "disciplinas": [
+                "Matematica",
+                "Portugues"
+            ],
+            "notas": {}
+        }
+    ],
+    "professores": [
+        {
+            "nome": "Carlos Barata",
+            "especialidade": [
+                "Matematica"
+            ],
+            "horarios": [
+                "9:00",
+                "10:00"
+            ]
+        }
+    ],
+    "turmas": [
+        {
+            "nome": "2B",
+            "professor": {
+                "nome": "Carlos Barata",
+                "especialidade": [
+                    "Matematica"
+                ],
+                "horarios": [
+                    "9:00",
+                    "10:00"
+                ]
+            },
+            "alunos": [
+                {
+                    "nome": "Gustavo Pitella",
+                    "idade": 28,
+                    "ano_escolar": 2,
+                    "disciplinas": [
+                        "Matematica",
+                        "Portugues"
+                    ],
+                    "notas": {}
+                }
+            ]
+        }
+    ]
+}

@@ -61,12 +61,9 @@ def salvar_em_pdf(alunos, professores, turmas):
             if 'alunos' in turma and turma['alunos']:
                 pdf.cell(200, 10, txt="  Alunos:", ln=True)
                 for aluno in turma['alunos']:
-                    pdf.cell(200, 10, txt=f"    - {aluno['nome']} (Ano Escolar: {aluno['ano_escolar']})", ln=True)
+                    pdf.cell(200, 10, txt=f"    - {aluno['nome']} ({aluno['ano_escolar']})", ln=True)
             else:
                 pdf.cell(200, 10, txt="  Nenhum aluno associado à turma.", ln=True)
-            pdf.ln(5)
-    else:
-        pdf.cell(200, 10, txt="Nenhuma turma cadastrada.", ln=True)
 
    
     nome_arquivo = "Relatorio_Gestao_Escolar.pdf"

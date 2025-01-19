@@ -4,13 +4,13 @@ from professores import listar_professores, cadastrar_professor
 from turmas import criar_turma, listar_turmas
 from relatorios import salvar_em_pdf, salvar_em_excel
 
-# Inicialização das listas globais
+
 alunos = []
 professores = []
 turmas = []
 
 def salvar_dados(alunos, professores, turmas, arquivo="dados_escolares.json"):
-    """Salva os dados em um arquivo JSON."""
+   
     try:
         with open(arquivo, "w", encoding="utf-8") as f:
             json.dump({
@@ -23,7 +23,7 @@ def salvar_dados(alunos, professores, turmas, arquivo="dados_escolares.json"):
         print(f"Erro ao salvar os dados: {e}")
 
 def carregar_dados(arquivo="dados_escolares.json"):
-    """Carrega os dados de um arquivo JSON."""
+   
     try:
         with open(arquivo, "r", encoding="utf-8") as f:
             dados = json.load(f)
@@ -36,7 +36,6 @@ def carregar_dados(arquivo="dados_escolares.json"):
         print(f"Erro ao carregar os dados: {e}")
         return [], [], []
 
-# Carrega os dados salvos ao iniciar o programa
 alunos, professores, turmas = carregar_dados()
 
 while True:
@@ -56,19 +55,23 @@ while True:
     opcao = input("Escolha uma opção: ")
 
     if opcao == "1":
-        cadastrar_aluno()
+        cadastrar_aluno(alunos)  
+        salvar_dados(alunos, professores, turmas)  
     elif opcao == "2":
-        listar_alunos()
+        listar_alunos(alunos)
     elif opcao == "3":
-        cadastrar_professor()
+        cadastrar_professor(professores)  
+        salvar_dados(alunos, professores, turmas)  
     elif opcao == "4":
-        listar_professores()
+        listar_professores(professores)
     elif opcao == "5":
-        criar_turma()
+        criar_turma(turmas, professores, alunos)  
+        salvar_dados(alunos, professores, turmas)  
     elif opcao == "6":
-        listar_turmas()
+        listar_turmas(turmas)
     elif opcao == "7":
-        adicionar_notas()
+        adicionar_notas(alunos)  
+        salvar_dados(alunos, professores, turmas)  
     elif opcao == "8":
         listar_notas()
     elif opcao == "9":
@@ -76,7 +79,7 @@ while True:
     elif opcao == "10":
         salvar_em_excel(alunos, professores, turmas)
     elif opcao == "11":
-        salvar_dados(alunos, professores, turmas)
+        salvar_dados(alunos, professores, turmas) 
         print("Encerrando o programa. Até mais!")
         break
     else:
